@@ -85,7 +85,6 @@ export default {
             axios.post("https://bussineswork.herokuapp.com/login/", self.user_in,  {headers: {}})
                 .then((result) => {
                     if(result.data.Autenticado == true){
-                        alert("Autenticación Exitosa")
                         self.$emit('log-in', self.user_in.username)}
                 })
                 .catch((error) => {
