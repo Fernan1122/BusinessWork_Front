@@ -68,7 +68,6 @@ export default {
     function updateProgress(fileNumber, percent) {
       uploadProgress[fileNumber] = percent
       let total = uploadProgress.reduce((tot, curr) => tot + curr, 0) / uploadProgress.length
-      console.debug('update', fileNumber, percent, total)
       progressBar.value = total
     }
 
