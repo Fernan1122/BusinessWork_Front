@@ -40,7 +40,6 @@ export default {
     }
     ,
     search() {
-      console.log(this.searchText);
       this.$store.dispatch("search", { text: this.searchText });
     }
   },
