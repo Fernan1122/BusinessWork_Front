@@ -1,6 +1,6 @@
 <template>
     <div id="AuthUser" class="auth_user">
-        <div class="head">
+        <div class="headLogin">
             <meta http-equiv='cache-control' content='no-cache'>
         <meta http-equiv='expires' content='0'>
         <meta http-equiv='pragma' content='no-cache'>
@@ -8,9 +8,9 @@
         <link href="https://fonts.googleapis.com/css?family=Poppins:600&display=swap" rel="stylesheet">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         </div>
-        <div class="body">
+        <div class="bodyLogin">
             <img class="wave" src="../assets/img3.jpg"/>
-            <div class="container">
+            <div class="containerLogin">
                 <div class="img">
                     <img src="../assets/img1.svg">
                 </div>
@@ -36,7 +36,7 @@
                                     <input type="password" class="input" v-model="user_in.password" name="Contraseña">
                             </div>
                         </div>
-                        <button type="submit" class="btn">Iniciar Sesión</button>
+                        <button type="submit" class="btnLogin">Iniciar Sesión</button>
                     </form>
                 </div>
             </div>
@@ -49,6 +49,27 @@
 import axios from 'axios';
 
 export default {
+	mounted: function() {
+		const inputs = document.querySelectorAll(".input");
+
+		function addcl(){
+			let parent = this.parentNode.parentNode;
+			parent.classList.add("focus");
+		}
+
+		function remcl(){
+			let parent = this.parentNode.parentNode;
+			if(this.value == ""){
+				parent.classList.remove("focus");
+			}
+		}
+
+		inputs.forEach(input => {
+		input.addEventListener("focus", addcl);
+		input.addEventListener("blur", remcl);
+		});
+	
+	},
     name: "UserAuth",
     data: function(){
         return {
@@ -61,7 +82,7 @@ export default {
     methods: {
          processAuthUser: function(){
             var self = this
-            axios.post("https://businesswork-test.herokuapp.com/login/", self.user_in,  {headers: {}})
+            axios.post("https://bussineswork.herokuapp.com/login/", self.user_in,  {headers: {}})
                 .then((result) => {
                     if(result.data.Autenticado == true){
                         alert("Autenticación Exitosa")
@@ -77,19 +98,15 @@ export default {
                 });
         }
 
-        
-    }
+
+	}
 }
 </script>
 
 <style>
-*{
-	padding: 0;
-	margin: 0;
-	box-sizing: border-box;
-}
 
-.body{
+
+.bodyLogin{
     font-family: 'Poppins', sans-serif;
     overflow: hidden;
 }
@@ -104,7 +121,7 @@ export default {
 	z-index: -1;
 }
 
-.container{
+.containerLogin{
     width: 100vw;
     height: 100vh;
     display: grid;
@@ -251,7 +268,7 @@ a:hover{
 	color: #38d39f;
 }
 
-.btn{
+.btnLogin{
 	display: block;
 	width: 100%;
 	height: 50px;
@@ -268,7 +285,7 @@ a:hover{
 	cursor: pointer;
 	transition: .5s;
 }
-.btn:hover{
+.btnLogin:hover{
 	background-position: right;
 }
 

@@ -9,9 +9,9 @@
 
         <!-- Right aligned nav items -->
         <b-navbar-nav id="buscador">
-          <b-nav-form @submit.prevent="search">
+          <b-nav-form @submit.prevent="search" class="buscador2">
             <b-button size="sm" class="my-2 my-sm-0" type="submit" style="background-color: white;"
-              ><img src="../assets/lupa.svg" width="20rem" height="20rem" /></b-button>
+              ><img src="../assets/lupa.svg" width="18px" height="18px" /></b-button>
             <b-form-input id="buscador-campo" 
               size="sm"
               placeholder="Ingrese el nombre del archivo"
@@ -44,7 +44,7 @@
             </template>
           <!-- Using 'button-content' slot -->
             <b-dropdown-item>Perfil</b-dropdown-item>
-            <b-dropdown-item v-on="LogOut">Salir</b-dropdown-item>
+            <b-dropdown-item @click="salir">Salir</b-dropdown-item>
           </b-nav-item-dropdown>
         </b-navbar-nav>
       </b-collapse>
@@ -55,6 +55,10 @@
 <script>
 export default {
   methods: {
+    salir() {
+      this.$emit("click");
+    }
+    ,
     search() {
       console.log(this.searchText);
       this.$store.dispatch("search", { text: this.searchText });
@@ -89,6 +93,6 @@ export default {
   padding-left: 5rem;
 }
 #buscador-campo{
-  width: 30rem;
+  width: 20rem;
 }
 </style>

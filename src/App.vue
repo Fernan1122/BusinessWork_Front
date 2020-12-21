@@ -4,7 +4,7 @@
       <b-spinner class="spinner" :variant="'primary'" :key="'primary'"></b-spinner>
     </div>
     <div id="nav">
-      <top-header v-if="is_auth" />
+      <top-header v-if="is_auth" @click="click" />
     </div>
     <router-view v-on:log-in="logIn" />
   </div>
@@ -21,7 +21,8 @@ export default {
       }    
   },
   components: { "top-header": TopHeader },
-  computed: {
+
+  computed:{
     ...mapGetters(["getSpinner"])
   },
 
@@ -30,13 +31,13 @@ export default {
       var self = this
       self.is_auth  = localStorage.getItem('isAuth') || false
 
-      if(self.is_auth == false)
+      if(self.is_auth == false){
         self.$router.push({name: "login"})
-      
+      }
       else{
-        let username = localStorage.getItem("current_username")
-        self.$router.push({name: "user", params:{ username: username }})
-      }  
+        self.$router.push({name: "home"})
+      }
+      
     },
 
     logIn: function(username){
@@ -45,22 +46,22 @@ export default {
       this.updateAuth()
     },
 
-    logOut: function(){
+    click(){
       localStorage.removeItem('isAuth')
       localStorage.removeItem('current_username')
       this.updateAuth()
+    }
     },
-    
-  },
 
-  created: function(){
-    this.$router.push({name: "home"})
+    created: function(){
     this.updateAuth()
-  }
+    }
 };
 </script>
 
 <style lang="scss">
+
+
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -31,7 +31,7 @@ export default new Vuex.Store({
       commit("SET_SPINNER", true);
       return new Promise(resolve => {
         setTimeout(async () => {
-          await axios.get("https://businesswork-test.herokuapp.com/documents/").then(response => {var datos = response.data; commit("SET_FILES", datos)});
+          await axios.get("https://bussineswork.herokuapp.com/documents/").then(response => {var datos = response.data; commit("SET_FILES", datos)});
           const val = state.files;
           resolve(val);
           commit("SET_SPINNER", false);
