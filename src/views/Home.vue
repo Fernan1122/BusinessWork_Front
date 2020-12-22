@@ -8,7 +8,7 @@
           :exp="files.exp"
           :notif="files.notif"
           :descrip="files.descrip"
-                    
+          :username="files.owner_username"     
           v-for="files in getDisplayFiles"
           :key="files.id"
         ></files-card>
