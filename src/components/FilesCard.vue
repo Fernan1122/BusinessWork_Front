@@ -23,7 +23,7 @@
                   </tr>
                   <tr>
                     <td><strong>Subido por</strong></td>
-                    <td>elquelosubio</td>
+                    <td>{{username}}</td>
                     <td></td>
                     <td></td>
                     <td><strong>Descripción</strong></td>
@@ -53,7 +53,7 @@
 
 <script>
 export default {
-  props: ["name","exp", "notif", "descrip" ],
+  props: ["name","exp", "notif", "descrip", "username" ],
   computed: {
     modalId() {
       return `modal-${this.id}`;
